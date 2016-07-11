@@ -16,6 +16,23 @@ export default connect({
 
 Now when `NODE_ENV === 'test'` cerebral-view-react/connect will not be called, instead your pure component will be returned, making it easy to test.
 
+Example mocha test
+```js
+import React from 'react';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
+
+import Application from '../components/application';
+import HomePage from '../components/homepage';
+
+describe('<Application />', () => {
+  it('renders the <HomePage />', () => {
+    const wrapper = shallow(<Application />);
+    expect(wrapper.find(HomePage)).to.have.length.of(1);
+  });
+});
+```
+
 ## Computed
 
 ```js
@@ -29,3 +46,51 @@ export default Computed({
 ```
 
 Now when `NODE_ENV === 'test'` cerebra/Computed will not be called, instead your pure function will be returned, making it easy to test.
+
+Example mocha test
+```js
+import { expect } from 'chai';
+import upperUser from '../computed/upperUser';
+
+describe('upperUser() Computed', () => {
+  it('gets the user name in upper case', () => {
+    expect(upperUser()).to.equal('FRED');
+  });
+});
+```
+
+## Module / Signal Testing
+
+The testable controller lets you test your modules and signals in isolation.
+
+Example mocha test
+```js
+import { expect } from 'chai';
+import Controller from 'cerebral-testable/controller'
+
+// module to test
+import application from '../modules/application';
+
+describe('application module', () => {
+  let controller, signals;
+
+  beforeEach(() => {
+    [ controller, signals ] = testController({
+      /* Initial model state for the test */
+    }, {
+      application: application()
+    });
+    // if you need to mock services
+    controller.mockServices('router', {
+      redirect (url) { }
+    });
+  });
+
+  it('redirects to "home" on unknown url', (done) => {
+    controller.test((output) => {
+      expect(controller.get('application.page')).to.equal('NotFound');
+    }, done);
+    signals.application.unknownUrlReceived();
+  });
+});
+```

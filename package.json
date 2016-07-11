@@ -1,6 +1,6 @@
 {
   "name": "cerebral-testable",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Helpers to make cerebral more testable",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,9 @@
     "url": "https://github.com/cerebral/cerebral-testable/issues"
   },
   "homepage": "https://github.com/cerebral/cerebral-testable#readme",
+  "dependencies": {
+    "cerebral-model-immutable": "^0.1.2"
+  },
   "peerDependencies": {
     "cerebral": "^0.35.0"
   }
