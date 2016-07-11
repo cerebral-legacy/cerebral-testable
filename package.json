@@ -1,0 +1,25 @@
+{
+  "name": "cerebral-testable",
+  "version": "0.1.0",
+  "description": "Helpers to make cerebral more testable",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cerebral/cerebral-testable.git"
+  },
+  "keywords": [
+    "cerebral"
+  ],
+  "author": "Cerebral",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cerebral/cerebral-testable/issues"
+  },
+  "homepage": "https://github.com/cerebral/cerebral-testable#readme",
+  "peerDependencies": {
+    "cerebral": "^0.35.0"
+  }
+}
