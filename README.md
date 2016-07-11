@@ -27,7 +27,7 @@ import HomePage from '../components/homepage';
 
 describe('<Application />', () => {
   it('renders the <HomePage />', () => {
-    const wrapper = shallow(<Application />);
+    const wrapper = shallow(<Application page="home" />);
     expect(wrapper.find(HomePage)).to.have.length.of(1);
   });
 });
@@ -54,7 +54,7 @@ import upperUser from '../computed/upperUser';
 
 describe('upperUser() Computed', () => {
   it('gets the user name in upper case', () => {
-    expect(upperUser()).to.equal('FRED');
+    expect(upperUser({ name: 'fred' })).to.equal('FRED');
   });
 });
 ```
@@ -75,7 +75,7 @@ describe('application module', () => {
   let controller, signals;
 
   beforeEach(() => {
-    [ controller, signals ] = testController({
+    [ controller, signals ] = Controller({
       /* Initial model state for the test */
     }, {
       application: application()
@@ -88,7 +88,7 @@ describe('application module', () => {
 
   it('redirects to "home" on unknown url', (done) => {
     controller.test((output) => {
-      expect(controller.get('application.page')).to.equal('NotFound');
+      expect(controller.get('application.page')).to.equal('home');
     }, done);
     signals.application.unknownUrlReceived();
   });
