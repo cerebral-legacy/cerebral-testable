@@ -1,16 +1,33 @@
 module.exports = {
-  Computed: function (deps, func) {
-    if (process.env.NODE_ENV === 'test') {
-      return func;
-    } else {
-      return require('cerebral').Computed(deps, func);
+  controller: function (state, modules) {
+    var model = require('cerebral-model-immutable')({});
+    var controller = require('cerebral').Controller(model);
+
+    if (modules) {
+      controller.addModules(modules);
     }
-  },
-  connect: function (deps, Component) {
-    if (process.env.NODE_ENV === 'test') {
-      return Component;
-    } else {
-      return require('cerebral-view-react').connect(deps, Component);
-    }
+
+    model.tree.deepMerge(state);
+
+    controller.mockServices = function (module, services) {
+      let mockModules = {};
+      mockModules[module] = function (module) {
+        module.addServices(services);
+      };
+      controller.addModules(mockModules);
+    };
+
+    controller.test = function (testFunc, done) {
+      controller.once('signalEnd', function (output) {
+        try {
+          testFunc(output);
+        } catch (e) {
+          return done(e);
+        }
+        done();
+      });
+    };
+
+    return [ controller, controller.getSignals() ];
   }
 };
