@@ -1,9 +1,12 @@
 module.exports = function (state, modules) {
-  var controller = require('cerebral').Controller(require('cerebral-model-immutable')(state));
+  var model = require('cerebral-model-immutable')({});
+  var controller = require('cerebral').Controller(model);
 
   if (modules) {
     controller.addModules(modules);
   }
+
+  model.tree.deepMerge(state);
 
   controller.mockServices = function (module, services) {
     let mockModules = {};
