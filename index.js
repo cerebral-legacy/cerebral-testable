@@ -1,5 +1,5 @@
 module.exports = {
-  controller: function (state, modules) {
+  Controller: function (state, modules) {
     var model = require('cerebral-model-immutable')({});
     var controller = require('cerebral').Controller(model);
 
