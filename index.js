@@ -18,14 +18,28 @@ module.exports = {
     };
 
     controller.test = function (testFunc, done) {
-      controller.once('signalEnd', function (output) {
-        try {
-          testFunc(output);
-        } catch (e) {
-          return done(e);
-        }
-        done();
-      });
+      if (typeof done === 'function') {
+        controller.once('signalEnd', function (output) {
+          try {
+            testFunc(output);
+          } catch (e) {
+            return done(e);
+          }
+          done();
+        });
+      } else {
+        return new Promise(function (resolve, reject) {
+          if (typeof testFunc !== 'function') {
+            return reject('testFunc must be a function');
+          }
+          controller.once('signalEnd', resolve);
+          try {
+            testFunc();
+          } catch (e) {
+            reject(e)
+          }
+        });
+      }
     };
 
     return [ controller, controller.getSignals() ];
