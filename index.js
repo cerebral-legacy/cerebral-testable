@@ -10,7 +10,7 @@ module.exports = {
     model.tree.deepMerge(state);
 
     controller.mockServices = function (module, services) {
-      let mockModules = {};
+      var mockModules = {};
       mockModules[module] = function (module) {
         module.addServices(services);
       };
