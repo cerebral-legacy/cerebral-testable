@@ -1,17 +1,21 @@
 {
   "name": "cerebral-testable",
-  "version": "0.3.3",
+  "version": "1.0.0",
   "description": "Helpers to make cerebral more testable",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard 'src/**/*.js' --verbose | snazzy || true",
+    "pretest": "npm run lint --silent",
+    "test": "NODE_ENV=test istanbul cover ./node_modules/.bin/_mocha --check-coverage -- -R ${REPORTER:-spec} $(find src -name '*.test.js') || true",
+    "start": "REPORTER=dot watch 'npm run test --silent' src"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerebral/cerebral-testable.git"
   },
   "keywords": [
-    "cerebral"
+    "cerebral",
+    "test"
   ],
   "author": "Cerebral",
   "license": "MIT",
@@ -19,7 +23,16 @@
     "url": "https://github.com/cerebral/cerebral-testable/issues"
   },
   "homepage": "https://github.com/cerebral/cerebral-testable#readme",
+  "devDependencies": {
+    "cerebral": "^1.0.0",
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.4",
+    "mocha": "^3.0.2",
+    "snazzy": "^4.0.1",
+    "standard": "^7.1.2",
+    "watch": "^0.19.1"
+  },
   "peerDependencies": {
-    "cerebral": "^0.35.0"
+    "cerebral": "^0.35.0 || ^1.0.0"
   }
 }

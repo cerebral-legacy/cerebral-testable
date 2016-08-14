@@ -1,0 +1,9 @@
+instrumentation:
+  root: src
+  include-all-sources: true
+  excludes: [
+    "*.test.js"
+  ]
+reporting:
+  print: summary
+  dir: coverage
