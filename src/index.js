@@ -36,6 +36,10 @@ module.exports = {
       })
     }
 
+    controller.set = function (path, value) {
+      model.tree.set(path.split('.'), value)
+    }
+
     return {
       controller: controller,
       signals: controller.getSignals()

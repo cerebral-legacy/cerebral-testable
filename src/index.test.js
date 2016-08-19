@@ -80,4 +80,12 @@ describe('testable controller', () => {
     let { controller } = Controller()
     expect(controller.get('x')).to.equal(undefined)
   })
+
+  it('can set state over and over', () => {
+    let { controller } = Controller()
+    controller.set('parent.child', 'x')
+    expect(controller.get('parent.child')).to.equal('x')
+    controller.set('parent.child', 'y')
+    expect(controller.get('parent.child')).to.equal('y')
+  })
 })

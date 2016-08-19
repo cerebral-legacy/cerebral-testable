@@ -1,6 +1,6 @@
 {
   "name": "cerebral-testable",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Helpers to make cerebral more testable",
   "main": "src/index.js",
   "scripts": {
@@ -24,13 +24,13 @@
   },
   "homepage": "https://github.com/cerebral/cerebral-testable#readme",
   "devDependencies": {
-    "cerebral": "^1.0.0",
+    "cerebral": "^1.0.1",
     "chai": "^3.5.0",
     "istanbul": "^0.4.4",
     "mocha": "^3.0.2",
     "snazzy": "^4.0.1",
     "standard": "^7.1.2",
-    "watch": "^0.19.1"
+    "watch": "^0.19.2"
   },
   "peerDependencies": {
     "cerebral": "^0.35.0 || ^1.0.0"
