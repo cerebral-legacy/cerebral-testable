@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cerebral/cerebral-testable.git"
+    "url": "git+https://github.com/cerebral-legacy/cerebral-testable.git"
   },
   "keywords": [
     "cerebral",
@@ -20,9 +20,9 @@
   "author": "Cerebral",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cerebral/cerebral-testable/issues"
+    "url": "https://github.com/cerebral-legacy/cerebral-testable/issues"
   },
-  "homepage": "https://github.com/cerebral/cerebral-testable#readme",
+  "homepage": "https://github.com/cerebral-legacy/cerebral-testable#readme",
   "devDependencies": {
     "cerebral": "^1.0.1",
     "chai": "^3.5.0",
